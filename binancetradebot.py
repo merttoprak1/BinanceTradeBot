@@ -9,14 +9,14 @@ api_key = ''
 secret_key = ''
 symbol = 'ETH/BUSD'
 
-# Bakiyeyi ve fiyatları al
+# Get balance and prices
 exchange = ccxt.binance({
     'apiKey': api_key,
     'secret': secret_key
 })
 balance = exchange.fetch_balance()
 
-# Get balance and prices
+# Function to trade
 def trade(symbol, side, amount):
     try:
         exchange.create_order(symbol, type='market', side=side, amount=amount)
@@ -47,7 +47,7 @@ while True:
     # Sell if Hull is below the moving average
     if price < last_hull:
         trade(symbol, 'sell', balance['ETH']['free'])
-        print("Satıldı:", price)
+        print("Sold:", price)
 
     # If Hull is above the moving average, buy
     elif price > last_hull:
@@ -55,7 +55,7 @@ while True:
         stop_loss = price * 0.98
         amount = balance['BUSD']['free'] / price
         trade(symbol, 'buy', amount)
-        print("Alındı:", price)
+        print("Bought:", price)
 
     # Run every 5 minutes
     time.sleep(300)
