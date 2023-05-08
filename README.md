@@ -1,4 +1,4 @@
-# BinanceTradeBot
+# Binance Trade Bot
 A nice trading bot that trades based on the Hull moving average on Binance.
 
 This trading bot uses my favorite indicator, the Hull Moving average.
